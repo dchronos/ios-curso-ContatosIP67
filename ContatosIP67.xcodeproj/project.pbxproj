@@ -13,6 +13,8 @@
 		0595622116A7537200607BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0595621F16A7537200607BA1 /* InfoPlist.strings */; };
 		0595622316A7537200607BA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595622216A7537200607BA1 /* main.m */; };
 		0595622716A7537200607BA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595622616A7537200607BA1 /* AppDelegate.m */; };
+		0595623016A7629500607BA1 /* FormularioContatoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595622E16A7629500607BA1 /* FormularioContatoViewController.m */; };
+		0595623116A7629500607BA1 /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0595622F16A7629500607BA1 /* FormularioContatoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,15 @@
 		0595621616A7537200607BA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0595621816A7537200607BA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0595621A16A7537200607BA1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		0595621E16A7537200607BA1 /* ContatosIP67-Info.plist */ = {isa = PBXFileReference; path = "ContatosIP67-Info.plist"; sourceTree = "<group>"; };
+		0595621E16A7537200607BA1 /* ContatosIP67-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ContatosIP67-Info.plist"; sourceTree = "<group>"; };
 		0595622016A7537200607BA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0595622216A7537200607BA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0595622416A7537200607BA1 /* ContatosIP67-Prefix.pch */ = {isa = PBXFileReference; path = "ContatosIP67-Prefix.pch"; sourceTree = "<group>"; };
-		0595622516A7537200607BA1 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		0595622416A7537200607BA1 /* ContatosIP67-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContatosIP67-Prefix.pch"; sourceTree = "<group>"; };
+		0595622516A7537200607BA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0595622616A7537200607BA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0595622D16A7629500607BA1 /* FormularioContatoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormularioContatoViewController.h; sourceTree = "<group>"; };
+		0595622E16A7629500607BA1 /* FormularioContatoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormularioContatoViewController.m; sourceTree = "<group>"; };
+		0595622F16A7629500607BA1 /* FormularioContatoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormularioContatoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,9 @@
 				0595622516A7537200607BA1 /* AppDelegate.h */,
 				0595622616A7537200607BA1 /* AppDelegate.m */,
 				0595621D16A7537200607BA1 /* Supporting Files */,
+				0595622D16A7629500607BA1 /* FormularioContatoViewController.h */,
+				0595622E16A7629500607BA1 /* FormularioContatoViewController.m */,
+				0595622F16A7629500607BA1 /* FormularioContatoViewController.xib */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0595622116A7537200607BA1 /* InfoPlist.strings in Resources */,
+				0595623116A7629500607BA1 /* FormularioContatoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +162,7 @@
 			files = (
 				0595622316A7537200607BA1 /* main.m in Sources */,
 				0595622716A7537200607BA1 /* AppDelegate.m in Sources */,
+				0595623016A7629500607BA1 /* FormularioContatoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

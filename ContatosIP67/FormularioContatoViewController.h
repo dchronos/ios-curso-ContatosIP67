@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *fieldSite;
 
 - (IBAction)criarContato:(id)sender;
+- (IBAction)proximoElemento:(id)sender;
 
 @end

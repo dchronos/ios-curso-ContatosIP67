@@ -20,11 +20,11 @@
 {
     
     Contato *c = [[Contato alloc] init];
-    c.nome = fieldNome.text;
-    c.telefone = fieldTelefone.text;
-    c.email = fieldEmail.text;
-    c.endereco = fieldEndereco.text;
-    c.site = fieldSite.text;
+    c.nome = self.fieldNome.text;
+    c.telefone = self.fieldTelefone.text;
+    c.email = self.fieldEmail.text;
+    c.endereco = self.fieldEndereco.text;
+    c.site = self.fieldSite.text;
     
     /** Usando Dicionario
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
@@ -35,6 +35,7 @@
     [c setObject:fieldSite.text forKey:@"fieldSite"];
     */
     NSLog(@"Contato adicionado: %@", c.description);
+    [self.view endEditing:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

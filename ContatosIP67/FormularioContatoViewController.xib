@@ -394,45 +394,45 @@
 						<string key="label">proximoElemento:</string>
 						<reference key="source" ref="411123901"/>
 						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
+						<int key="IBEventType">20</int>
 					</object>
-					<int key="connectionID">21</int>
+					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">proximoElemento:</string>
 						<reference key="source" ref="378272561"/>
 						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
+						<int key="IBEventType">20</int>
 					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">27</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">proximoElemento:</string>
 						<reference key="source" ref="61067428"/>
 						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
+						<int key="IBEventType">20</int>
 					</object>
-					<int key="connectionID">23</int>
+					<int key="connectionID">28</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">proximoElemento:</string>
 						<reference key="source" ref="575342041"/>
 						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
+						<int key="IBEventType">20</int>
 					</object>
-					<int key="connectionID">24</int>
+					<int key="connectionID">29</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">proximoElemento:</string>
 						<reference key="source" ref="416206725"/>
 						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
+						<int key="IBEventType">20</int>
 					</object>
-					<int key="connectionID">25</int>
+					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -560,7 +560,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">25</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -569,7 +569,7 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="criarContato:">id</string>
-						<string key="proximoElemento:">id</string>
+						<string key="proximoElemento:">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="criarContato:">
@@ -578,7 +578,7 @@
 						</object>
 						<object class="IBActionInfo" key="proximoElemento:">
 							<string key="name">proximoElemento:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">UITextField</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">

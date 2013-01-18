@@ -15,6 +15,7 @@
 @synthesize fieldEmail;
 @synthesize fieldEndereco;
 @synthesize fieldSite;
+@synthesize contatos;
 
 - (IBAction)criarContato:(id)sender
 {
@@ -34,8 +35,28 @@
     [c setObject:fieldEndereco.text forKey:@"endereco"];
     [c setObject:fieldSite.text forKey:@"fieldSite"];
     */
+    [self.contatos addObject:c];
     NSLog(@"Contato adicionado: %@", c.description);
     [self.view endEditing:YES];
+}
+
+- (IBAction)proximoElemento:(UITextField *)campoAtual
+{
+    if(campoAtual == self.fieldNome){
+        [self.fieldTelefone becomeFirstResponder];
+    }
+    else if(campoAtual == self.fieldTelefone){
+        [self.fieldEmail becomeFirstResponder];
+    }
+    else if(campoAtual == self.fieldEmail){
+        [self.fieldEndereco becomeFirstResponder];
+    }
+    else if(campoAtual == self.fieldEndereco){
+        [self.fieldSite becomeFirstResponder];
+    }
+    else if(campoAtual == self.fieldSite){
+        [self criarContato:nil];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -79,6 +100,15 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (id)init
+{
+    self = [self init];
+    if(self){
+        self.contatos = [[NSMutableArray alloc]init];
+    }
+    return self;
 }
 
 @end

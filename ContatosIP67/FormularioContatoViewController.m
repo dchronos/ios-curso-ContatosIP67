@@ -15,9 +15,9 @@
 @synthesize fieldEmail;
 @synthesize fieldEndereco;
 @synthesize fieldSite;
-@synthesize contatos;
+@synthesize contatos = _contatos;
 
-- (IBAction)criarContato:(id)sender
+- (Contato *)pegaDadosDoFormulario
 {
     
     Contato *c = [[Contato alloc] init];
@@ -26,7 +26,7 @@
     c.email = self.fieldEmail.text;
     c.endereco = self.fieldEndereco.text;
     c.site = self.fieldSite.text;
-    
+    return c;
     /** Usando Dicionario
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
     [c setObject:fieldNome.text forKey:@"nome"];
@@ -35,9 +35,14 @@
     [c setObject:fieldEndereco.text forKey:@"endereco"];
     [c setObject:fieldSite.text forKey:@"fieldSite"];
     */
+}
+- (void)adicionaContato
+{
+    Contato *c = [self pegaDadosDoFormulario];
     [self.contatos addObject:c];
     NSLog(@"Contato adicionado: %@", c.description);
     [self.view endEditing:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)proximoElemento:(UITextField *)campoAtual
@@ -55,7 +60,7 @@
         [self.fieldSite becomeFirstResponder];
     }
     else if(campoAtual == self.fieldSite){
-        [self criarContato:nil];
+        [self adicionaContato];
     }
 }
 
@@ -104,11 +109,19 @@
 
 - (id)init
 {
-    self = [self init];
+    self = [super init];
     if(self){
-        self.contatos = [[NSMutableArray alloc]init];
+        self.navigationItem.title = @"Formulario";
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+        target:self
+        action:@selector(chamaLista)];
+        self.navigationItem.leftBarButtonItem= btn;
     }
     return self;
+}
+-(void)chamaLista
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

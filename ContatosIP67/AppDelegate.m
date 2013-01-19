@@ -8,18 +8,26 @@
 
 #import "AppDelegate.h"
 #import "FormularioContatoViewController.h"
-
+#import "ListaContatosViewController.h"
 @implementation AppDelegate
 
+
 @synthesize window = _window;
+@synthesize contatos = _contatos;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    FormularioContatoViewController *form = [[FormularioContatoViewController alloc] init];
-    self.window.rootViewController = form;
+    //FormularioContatoViewController *form = [[FormularioContatoViewController alloc] init];
+    ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
+    self.window.rootViewController = nav;
+    self.contatos = [[NSMutableArray alloc] init ];
+    ListaContatosViewController *l = [[ListaContatosViewController alloc] init];
+    l.contatos = self.contatos;
     [self.window makeKeyAndVisible];
     return YES;
 }

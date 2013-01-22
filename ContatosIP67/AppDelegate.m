@@ -11,23 +11,30 @@
 #import "ListaContatosViewController.h"
 @implementation AppDelegate
 
-
 @synthesize window = _window;
 @synthesize contatos = _contatos;
-
+@synthesize nomeDoArquivo = _nomeDoArquivo;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSArray *uds =  NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString *ud = [ uds objectAtIndex:0];
+    self.nomeDoArquivo = [NSString stringWithFormat:@"%@/Contatos", ud];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     //FormularioContatoViewController *form = [[FormularioContatoViewController alloc] init];
     ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
+    
+    self.contatos = [NSKeyedUnarchiver unarchiveObjectWithFile:self.nomeDoArquivo];
+    if(!self.contatos){
+            self.contatos = [[NSMutableArray alloc] init ];
+    }
+    
+    lista.contatos = self.contatos;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
     self.window.rootViewController = nav;
-    self.contatos = [[NSMutableArray alloc] init ];
-    ListaContatosViewController *l = [[ListaContatosViewController alloc] init];
-    l.contatos = self.contatos;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -46,6 +53,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    [NSKeyedArchiver archiveRootObject:self.contatos toFile:self.nomeDoArquivo];
+    NSLog(@"Entrou em DidEnter %@", self.nomeDoArquivo);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

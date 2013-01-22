@@ -9,6 +9,7 @@
 #import "Contato.h"
 
 @implementation Contato
+@protocol NSCoding;
 @synthesize nome = _nome;
 @synthesize telefone;
 @synthesize email;
@@ -19,5 +20,24 @@
 {
     return [NSString stringWithFormat:@"nome: %@ telefone: %@",self.nome, self.telefone];
 }
-
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.nome forKey:@"nome"];
+    [aCoder encodeObject:self.telefone forKey:@"telefone"];
+    [aCoder encodeObject:self.email forKey:@"email"];
+    [aCoder encodeObject:self.endereco forKey:@"endereco"];
+    [aCoder encodeObject:self.site forKey:@"site"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        [self setNome:[aDecoder decodeObjectForKey:@"nome"]];
+        [self setNome:[aDecoder decodeObjectForKey:@"telefone"]];
+        [self setNome:[aDecoder decodeObjectForKey:@"email"]];
+        [self setNome:[aDecoder decodeObjectForKey:@"endereco"]];
+        [self setNome:[aDecoder decodeObjectForKey:@"site"]];
+    }
+    return self;
+}
 @end

@@ -39,8 +39,8 @@
 - (void)adicionaContato
 {
     Contato *c = [self pegaDadosDoFormulario];
-    [self.contatos addObject:c];
-    NSLog(@"Contato adicionado: %@", c.description);
+    [_contatos addObject:c];
+    NSLog(@"Contato adicionado: %@", _contatos);
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSArray *uds =  NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSArray *uds =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *ud = [ uds objectAtIndex:0];
     self.nomeDoArquivo = [NSString stringWithFormat:@"%@/Contatos", ud];
     
@@ -54,7 +54,6 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     [NSKeyedArchiver archiveRootObject:self.contatos toFile:self.nomeDoArquivo];
-    NSLog(@"Entrou em DidEnter %@", self.nomeDoArquivo);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

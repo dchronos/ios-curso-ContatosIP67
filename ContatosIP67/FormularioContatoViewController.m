@@ -16,17 +16,19 @@
 @synthesize fieldEndereco;
 @synthesize fieldSite;
 @synthesize contatos = _contatos;
+@synthesize contato = _contato;
+@synthesize delegate = _delegate;
 
-- (Contato *)pegaDadosDoFormulario
+- (void)pegaDadosDoFormulario
 {
-    
-    Contato *c = [[Contato alloc] init];
-    c.nome = self.fieldNome.text;
-    c.telefone = self.fieldTelefone.text;
-    c.email = self.fieldEmail.text;
-    c.endereco = self.fieldEndereco.text;
-    c.site = self.fieldSite.text;
-    return c;
+    if(!_contato){
+        self.contato = [[Contato alloc] init];
+    }
+    self.contato.nome = self.fieldNome.text;
+    self.contato.telefone = self.fieldTelefone.text;
+    self.contato.email = self.fieldEmail.text;
+    self.contato.endereco = self.fieldEndereco.text;
+    self.contato.site = self.fieldSite.text;
     /** Usando Dicionario
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
     [c setObject:fieldNome.text forKey:@"nome"];
@@ -38,11 +40,24 @@
 }
 - (void)adicionaContato
 {
-    Contato *c = [self pegaDadosDoFormulario];
-    [_contatos addObject:c];
-    NSLog(@"Contato adicionado: %@", _contatos);
+    [self pegaDadosDoFormulario];
+    NSLog(@"Adiciona");
+    [_contatos addObject:self.contato];
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)alteraContato
+{
+    [self pegaDadosDoFormulario];
+    NSLog(@"Alterar");
+    [self.delegate contatoAlterado:self.contato];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.view endEditing:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)atualizaContato
+{
+    
 }
 
 - (IBAction)proximoElemento:(UITextField *)campoAtual
@@ -60,7 +75,12 @@
         [self.fieldSite becomeFirstResponder];
     }
     else if(campoAtual == self.fieldSite){
-        [self adicionaContato];
+        if(!self.contato){
+            [self adicionaContato];
+        }
+        else{
+            [self alteraContato];
+        }
     }
 }
 
@@ -87,6 +107,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if (self.contato) {
+        self.fieldNome.text = _contato.nome;
+        self.fieldTelefone.text = _contato.telefone;
+        self.fieldEmail.text = _contato.email;
+        self.fieldEndereco.text = _contato.endereco;
+        self.fieldSite.text = _contato.site;
+    }
 }
 
 - (void)viewDidUnload
@@ -119,9 +146,20 @@
     }
     return self;
 }
+
+- (id)initWithContato: (Contato *)contato
+{
+    self = [super init];
+    if (self) {
+        self.contato = contato;
+    }
+    return self;
+}
+
 -(void)chamaLista
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

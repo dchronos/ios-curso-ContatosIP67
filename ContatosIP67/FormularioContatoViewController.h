@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Contato.h"
+#import "FormularioContatoViewControllerDelegate.h"
 
 @interface FormularioContatoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *fieldNome;
@@ -15,8 +17,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *fieldEndereco;
 @property (weak, nonatomic) IBOutlet UITextField *fieldSite;
 @property (strong) NSMutableArray *contatos;
+@property (strong) Contato *contato;
+@property (weak) id<FormularioContatoViewControllerDelegate> delegate;
 
-- (void) adicionaContato;
 - (IBAction)proximoElemento:(UITextField *) campoAtual;
+- (id)initWithContato: (Contato *) contato;
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FormularioContatoViewControllerDelegate.h"
 
-@interface ListaContatosViewController : UITableViewController
+@interface ListaContatosViewController : UITableViewController <FormularioContatoViewControllerDelegate, UIActionSheetDelegate>
 @property (strong) NSMutableArray *contatos;
+@property NSUInteger linhaDestaque;
+
 
 @end

@@ -33,10 +33,10 @@
     self = [super init];
     if (self) {
         [self setNome:[aDecoder decodeObjectForKey:@"nome"]];
-        [self setNome:[aDecoder decodeObjectForKey:@"telefone"]];
-        [self setNome:[aDecoder decodeObjectForKey:@"email"]];
-        [self setNome:[aDecoder decodeObjectForKey:@"endereco"]];
-        [self setNome:[aDecoder decodeObjectForKey:@"site"]];
+        [self setTelefone:[aDecoder decodeObjectForKey:@"telefone"]];
+        [self setEmail:[aDecoder decodeObjectForKey:@"email"]];
+        [self setEndereco:[aDecoder decodeObjectForKey:@"endereco"]];
+        [self setSite:[aDecoder decodeObjectForKey:@"site"]];
     }
     return self;
 }

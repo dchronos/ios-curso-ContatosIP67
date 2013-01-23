@@ -13,6 +13,7 @@
 
 @implementation ListaContatosViewController
 @synthesize contatos = _contatos;
+@synthesize linhaDestaque;
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -40,7 +41,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     //[super viewWillAppear:animated];
-    NSLog(@"lista %@", self.contatos.description);
     [self.tableView reloadData];
 }
 
@@ -60,7 +60,6 @@
     return self;
 }
 - (void) chamaFormulario{
-    NSLog(@"chamou");
     FormularioContatoViewController *formulario = [[FormularioContatoViewController alloc] init];
     formulario.contatos = _contatos;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:formulario];
@@ -68,6 +67,58 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Contato *contato = [self.contatos objectAtIndex:indexPath.row];
+    FormularioContatoViewController *form = [[FormularioContatoViewController alloc] initWithContato: contato];
+    form.contatos = self.contatos;
+    form.delegate = self;
+    [self.navigationController pushViewController:form animated:YES];
+    NSLog(@"didSelect %@", contato.nome);
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.contatos removeObjectAtIndex:indexPath.row];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+-(void)contatoAdicionado:(Contato *)contato
+{
+    
+}
+-(void)contatoAlterado:(Contato *)contato
+{
+    self.linhaDestaque = [self.contatos indexOfObject:contato];
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:linhaDestaque inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    self.linhaDestaque = -1;
+}
+
+-(void)viewDidLoad
+{
+    UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(exibeMaisAcoes:)];
+    [self.tableView addGestureRecognizer:lp];
+}
+
+-(void)exibeMaisAcoes:(UIGestureRecognizer *) gesture
+{
+    if(gesture.state == UIGestureRecognizerStateBegan){
+        CGPoint point = [gesture locationInView:self.tableView];
+        NSIndexPath *ip = [self.tableView indexPathForRowAtPoint:point];
+        Contato *c = [self.contatos objectAtIndex:ip.row];
+        NSLog(@"Contato %@", c);
+        UIActionSheet *folhaAcoes = [[UIActionSheet alloc] initWithTitle:c.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Email", @"Site", @"Mapa", nil];
+        [folhaAcoes showInView:self.view];
+    }
+}
 
 
 

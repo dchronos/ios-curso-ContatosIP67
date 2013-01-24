@@ -31,7 +31,7 @@
     self.contato.endereco = self.fieldEndereco.text;
     self.contato.site = self.fieldSite.text;
     if(self.botaoFoto.imageView.image){
-        self.contato.image = self.botaoFoto.imageView.image;
+        self.contato.foto = self.botaoFoto.imageView.image;
         NSLog(@"image");
     }
     /** Usando Dicionario
@@ -118,8 +118,8 @@
         self.fieldEmail.text = _contato.email;
         self.fieldEndereco.text = _contato.endereco;
         self.fieldSite.text = _contato.site;
-        if(self.botaoFoto.imageView.image){
-            [self.botaoFoto setImage:self.contato.image forState:UIControlStateNormal];
+        if(self.botaoFoto){
+            [self.botaoFoto setImage:self.contato.foto forState:UIControlStateNormal];
             NSLog(@"Tem Foto?");
         }
     }
@@ -175,11 +175,11 @@
 {
     UIImage *img = [info valueForKey:UIImagePickerControllerEditedImage];
     [self.botaoFoto setImage:img forState:UIControlStateNormal];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissModalViewControllerAnimated:YES];
     
 }
 
--(void)selecionaFoto:(id)sender
+-(IBAction)selecionaFoto:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         //Action Sheet - delegate
@@ -189,7 +189,7 @@
         ip.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         ip.allowsEditing = YES;
         ip.delegate = self;
-        [self presentViewController:ip animated:YES completion:nil];
+        [self presentModalViewController:ip animated:YES];
     }
 }
 

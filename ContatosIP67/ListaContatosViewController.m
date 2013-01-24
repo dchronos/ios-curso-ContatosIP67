@@ -14,6 +14,7 @@
 @implementation ListaContatosViewController
 @synthesize contatos = _contatos;
 @synthesize linhaDestaque;
+@synthesize contatoSelecionado;
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -113,12 +114,71 @@
     if(gesture.state == UIGestureRecognizerStateBegan){
         CGPoint point = [gesture locationInView:self.tableView];
         NSIndexPath *ip = [self.tableView indexPathForRowAtPoint:point];
-        Contato *c = [self.contatos objectAtIndex:ip.row];
-        NSLog(@"Contato %@", c);
-        UIActionSheet *folhaAcoes = [[UIActionSheet alloc] initWithTitle:c.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Email", @"Site", @"Mapa", nil];
+        contatoSelecionado = [self.contatos objectAtIndex:ip.row];
+        NSLog(@"Contato %@", contatoSelecionado);
+        UIActionSheet *folhaAcoes = [[UIActionSheet alloc] initWithTitle:contatoSelecionado.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Email", @"Site", @"Mapa", nil];
         [folhaAcoes showInView:self.view];
     }
 }
+-(void)abrirAplicativoComURL:(NSString *) urlStr
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+}
+-(void)ligar
+{
+    UIDevice *device = [UIDevice currentDevice];
+    NSLog(@"device: %@", device.model);
+    if([device.model isEqualToString:@"iPhone"])
+    {
+        NSString *num = [NSString stringWithFormat:@"tel:%@", contatoSelecionado.telefone];
+        [self abrirAplicativoComURL:num];
+    }
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Rah" message:@"Este dispositivo nao e um iPhone" delegate:nil cancelButtonTitle:@"cancelar" otherButtonTitles:nil];
+        [alertView  show];
+    }
+}
+-(void)abrirSite{
+    [self abrirAplicativoComURL:contatoSelecionado.site];
+}
+-(void)mostrarMapa{
+    NSString *url = [[NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", contatoSelecionado.site] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self abrirAplicativoComURL:url];
+}
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissModalViewControllerAnimated:YES];
+}
+-(void)enviarEmail
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *enviadorEmail = [[MFMailComposeViewController alloc] init];
+        enviadorEmail.mailComposeDelegate = self;
+        
+        [enviadorEmail setToRecipients:[NSArray arrayWithObject:contatoSelecionado.email]];
+        [enviadorEmail setSubject:@"Caelum"];
+        
+        [self presentModalViewController:enviadorEmail animated:YES];
+        
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ops" message:@"Nao eh possivel enviar email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Log %d", buttonIndex);
+    switch (buttonIndex) {
+        case 0: [self ligar]; break;
+        case 1: [self enviarEmail]; break;
+        case 2: [self abrirSite]; break;
+        case 3: [self mostrarMapa]; break;
+            
+        default:
+            break;
+    }
+}
+
 
 
 

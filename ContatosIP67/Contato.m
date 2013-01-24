@@ -15,10 +15,11 @@
 @synthesize email;
 @synthesize endereco;
 @synthesize site;
+@synthesize image;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"nome: %@ telefone: %@",self.nome, self.telefone];
+    return [NSString stringWithFormat:@"nome: %@ telefone: %@, image: %@",self.nome, self.telefone,self.image];
 }
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
@@ -27,6 +28,7 @@
     [aCoder encodeObject:self.email forKey:@"email"];
     [aCoder encodeObject:self.endereco forKey:@"endereco"];
     [aCoder encodeObject:self.site forKey:@"site"];
+    [aCoder encodeObject:self.image forKey:@"image"];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -37,6 +39,7 @@
         [self setEmail:[aDecoder decodeObjectForKey:@"email"]];
         [self setEndereco:[aDecoder decodeObjectForKey:@"endereco"]];
         [self setSite:[aDecoder decodeObjectForKey:@"site"]];
+        [self setImage:[aDecoder decodeObjectForKey:@"image"]];
     }
     return self;
 }

@@ -15,6 +15,7 @@
 @synthesize fieldEmail;
 @synthesize fieldEndereco;
 @synthesize fieldSite;
+@synthesize botaoFoto;
 @synthesize contatos = _contatos;
 @synthesize contato = _contato;
 @synthesize delegate = _delegate;
@@ -29,6 +30,10 @@
     self.contato.email = self.fieldEmail.text;
     self.contato.endereco = self.fieldEndereco.text;
     self.contato.site = self.fieldSite.text;
+    if(self.botaoFoto.imageView.image){
+        self.contato.image = self.botaoFoto.imageView.image;
+        NSLog(@"image");
+    }
     /** Usando Dicionario
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
     [c setObject:fieldNome.text forKey:@"nome"];
@@ -41,7 +46,7 @@
 - (void)adicionaContato
 {
     [self pegaDadosDoFormulario];
-    NSLog(@"Adiciona");
+    NSLog(@"Adiciona %@", self.contato);
     [_contatos addObject:self.contato];
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -49,7 +54,7 @@
 - (void)alteraContato
 {
     [self pegaDadosDoFormulario];
-    NSLog(@"Alterar");
+    NSLog(@"Alterar %@", self.contato);
     [self.delegate contatoAlterado:self.contato];
     [self.navigationController popViewControllerAnimated:YES];
     [self.view endEditing:YES];
@@ -113,6 +118,10 @@
         self.fieldEmail.text = _contato.email;
         self.fieldEndereco.text = _contato.endereco;
         self.fieldSite.text = _contato.site;
+        if(self.botaoFoto.imageView.image){
+            [self.botaoFoto setImage:self.contato.image forState:UIControlStateNormal];
+            NSLog(@"Tem Foto?");
+        }
     }
 }
 
@@ -123,6 +132,7 @@
     [self setFieldEmail:nil];
     [self setFieldEndereco:nil];
     [self setFieldSite:nil];
+    [self setBotaoFoto:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -159,6 +169,28 @@
 -(void)chamaLista
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *img = [info valueForKey:UIImagePickerControllerEditedImage];
+    [self.botaoFoto setImage:img forState:UIControlStateNormal];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)selecionaFoto:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        //Action Sheet - delegate
+    }
+    else{  
+        UIImagePickerController *ip = [[UIImagePickerController alloc]init];
+        ip.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        ip.allowsEditing = YES;
+        ip.delegate = self;
+        [self presentViewController:ip animated:YES completion:nil];
+    }
 }
 
 

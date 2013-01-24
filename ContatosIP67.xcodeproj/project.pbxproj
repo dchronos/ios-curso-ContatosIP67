@@ -17,6 +17,8 @@
 		0595623116A7629500607BA1 /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0595622F16A7629500607BA1 /* FormularioContatoViewController.xib */; };
 		0595623416A7755500607BA1 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595623316A7755500607BA1 /* Contato.m */; };
 		059AB13A16A9F8490099BE4C /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059AB13916A9F8490099BE4C /* ListaContatosViewController.m */; };
+		05A57CEF16B1E4950075511A /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 05A57CEE16B1E4950075511A /* Location.gpx */; };
+		05A57CF316B1ECB60075511A /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A57CF216B1ECB60075511A /* TPKeyboardAvoidingScrollView.m */; };
 		05ACEF2C16B0959F0019538A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05ACEF2B16B0959F0019538A /* MessageUI.framework */; };
 		05ACEF3816B0B7850019538A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF2F16B0B7850019538A /* Default.png */; };
 		05ACEF3916B0B7850019538A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF3016B0B7850019538A /* Default@2x.png */; };
@@ -50,6 +52,9 @@
 		0595623316A7755500607BA1 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contato.m; sourceTree = "<group>"; };
 		059AB13816A9F8490099BE4C /* ListaContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaContatosViewController.h; sourceTree = "<group>"; };
 		059AB13916A9F8490099BE4C /* ListaContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaContatosViewController.m; sourceTree = "<group>"; };
+		05A57CEE16B1E4950075511A /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		05A57CF116B1ECB50075511A /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		05A57CF216B1ECB60075511A /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		05ACEF2B16B0959F0019538A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		05ACEF2F16B0B7850019538A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		05ACEF3016B0B7850019538A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -116,6 +121,8 @@
 		0595621C16A7537200607BA1 /* ContatosIP67 */ = {
 			isa = PBXGroup;
 			children = (
+				05A57CF116B1ECB50075511A /* TPKeyboardAvoidingScrollView.h */,
+				05A57CF216B1ECB60075511A /* TPKeyboardAvoidingScrollView.m */,
 				0595622516A7537200607BA1 /* AppDelegate.h */,
 				0595622616A7537200607BA1 /* AppDelegate.m */,
 				059AB13816A9F8490099BE4C /* ListaContatosViewController.h */,
@@ -128,6 +135,7 @@
 				0595622E16A7629500607BA1 /* FormularioContatoViewController.m */,
 				05ACEF4116B0BB380019538A /* ContatosNoMapaViewController.h */,
 				05ACEF4216B0BB380019538A /* ContatosNoMapaViewController.m */,
+				05A57CEE16B1E4950075511A /* Location.gpx */,
 				05ACEF4316B0BB380019538A /* ContatosNoMapaViewController.xib */,
 				0595622F16A7629500607BA1 /* FormularioContatoViewController.xib */,
 			);
@@ -223,6 +231,7 @@
 				05ACEF3F16B0B7850019538A /* mapa-contatos@2x.png in Resources */,
 				05ACEF4016B0B7850019538A /* Vila Mariana.gpx in Resources */,
 				05ACEF4516B0BB380019538A /* ContatosNoMapaViewController.xib in Resources */,
+				05A57CEF16B1E4950075511A /* Location.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +248,7 @@
 				0595623416A7755500607BA1 /* Contato.m in Sources */,
 				059AB13A16A9F8490099BE4C /* ListaContatosViewController.m in Sources */,
 				05ACEF4416B0BB380019538A /* ContatosNoMapaViewController.m in Sources */,
+				05A57CF316B1ECB60075511A /* TPKeyboardAvoidingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "ContatosNoMapaViewController.h"
 
 @implementation ContatosNoMapaViewController
+@synthesize mapa;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,12 +32,16 @@
 
 - (void)viewDidLoad
 {
+    
+    MKUserTrackingBarButtonItem *botaoLocalizacao = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapa];
+    self.navigationItem.leftBarButtonItem = botaoLocalizacao;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setMapa:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -46,6 +51,19 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+-(id) init {
+    self = [super init];
+    
+    if(self){
+        
+        UIImage *imagemTabItem = [UIImage imageNamed:@"mapa-contatos.png"];
+        UITabBarItem *tabItem = [[UITabBarItem alloc] initWithTitle:@"Mapa" image:imagemTabItem tag:1];
+        
+        self.tabBarItem = tabItem;
+        self.navigationItem.title = @"Localizacao";
+    }
+    return self;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FormularioContatoViewController.h"
 #import "ListaContatosViewController.h"
+#import "ContatosNoMapaViewController.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -34,7 +35,14 @@
     
     lista.contatos = self.contatos;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
-    self.window.rootViewController = nav;
+    
+    ContatosNoMapaViewController *contatosMapa = [[ContatosNoMapaViewController alloc]init];
+    UINavigationController *mapaNavigation =[[UINavigationController alloc] initWithRootViewController:contatosMapa];
+    UITabBarController *tabBarController = [[UITabBarController alloc]init];
+    tabBarController.viewControllers = [NSArray arrayWithObjects:nav, mapaNavigation, nil];
+    
+    
+    self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

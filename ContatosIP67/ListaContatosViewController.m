@@ -49,15 +49,21 @@
 {
     self = [super init];
     if(self){
+        
+        UIImage *imagemTabItem = [UIImage imageNamed:@"lista-contatos.png"];
+        UITabBarItem *tabItem  = [[UITabBarItem alloc] initWithTitle:@"Contatos" image:imagemTabItem tag:0];
+        self.tabBarItem = tabItem;
+        
         self.navigationItem.title = @"contatos";
-    }
-    /*UIBarButtonSystemItemAdd eh uma constante*/
-    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-    target:self
-    action:@selector(chamaFormulario)];
-    self.navigationItem.rightBarButtonItem = btn;
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        /*UIBarButtonSystemItemAdd eh uma constante*/
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                             target:self
+                                                                             action:@selector(chamaFormulario)];
+        self.navigationItem.rightBarButtonItem = btn;
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
+    }
+    
     return self;
 }
 - (void) chamaFormulario{

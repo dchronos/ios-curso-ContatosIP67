@@ -37,6 +37,7 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
     
     ContatosNoMapaViewController *contatosMapa = [[ContatosNoMapaViewController alloc]init];
+    contatosMapa.contatos = self.contatos;
     UINavigationController *mapaNavigation =[[UINavigationController alloc] initWithRootViewController:contatosMapa];
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
     tabBarController.viewControllers = [NSArray arrayWithObjects:nav, mapaNavigation, nil];

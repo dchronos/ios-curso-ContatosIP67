@@ -10,6 +10,8 @@
 #import <MapKit/Mapkit.h>
 
 @interface ContatosNoMapaViewController : UIViewController
+@property (nonatomic, strong) NSMutableArray *contatos;
 @property (weak, nonatomic) IBOutlet MKMapView *mapa;
+
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Contato.h"
 #import "FormularioContatoViewControllerDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface FormularioContatoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *fieldNome;
@@ -19,11 +20,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *botaoFoto;
 @property (strong) NSMutableArray *contatos;
 @property (strong) Contato *contato;
+@property (weak, nonatomic) IBOutlet UITextField *fieldLatitude;
+@property (weak, nonatomic) IBOutlet UITextField *fieldLongitude;
 @property (weak) id<FormularioContatoViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 
 
 - (IBAction)proximoElemento:(UITextField *) campoAtual;
 - (id)initWithContato: (Contato *) contato;
 - (IBAction)selecionaFoto:(id)sender;
+- (IBAction)buscarCoordenadas:(id)sender;
 
 @end

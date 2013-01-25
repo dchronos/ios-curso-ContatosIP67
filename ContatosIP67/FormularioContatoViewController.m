@@ -18,7 +18,10 @@
 @synthesize botaoFoto;
 @synthesize contatos = _contatos;
 @synthesize contato = _contato;
+@synthesize fieldLatitude;
+@synthesize fieldLongitude;
 @synthesize delegate = _delegate;
+@synthesize loading;
 
 - (void)pegaDadosDoFormulario
 {
@@ -34,6 +37,8 @@
         self.contato.foto = self.botaoFoto.imageView.image;
         NSLog(@"image");
     }
+    self.contato.latitude = [NSNumber numberWithFloat:[self.fieldLatitude.text floatValue]];
+    self.contato.longitude = [NSNumber numberWithFloat:[self.fieldLongitude.text floatValue]];
     /** Usando Dicionario
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
     [c setObject:fieldNome.text forKey:@"nome"];
@@ -122,6 +127,8 @@
             [self.botaoFoto setImage:self.contato.foto forState:UIControlStateNormal];
             NSLog(@"Tem Foto?");
         }
+        self.fieldLatitude.text = [_contato.latitude stringValue];
+        self.fieldLongitude.text = [_contato.longitude stringValue];
     }
 }
 
@@ -133,6 +140,9 @@
     [self setFieldEndereco:nil];
     [self setFieldSite:nil];
     [self setBotaoFoto:nil];
+    [self setFieldLatitude:nil];
+    [self setFieldLongitude:nil];
+    [self setLoading:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -191,6 +201,21 @@
         ip.delegate = self;
         [self presentModalViewController:ip animated:YES];
     }
+}
+
+- (IBAction)buscarCoordenadas:(id)sender {
+    [self.loading startAnimating];
+    CLGeocoder *geocode = [[CLGeocoder alloc] init];
+    [geocode geocodeAddressString:self.fieldEndereco.text completionHandler: ^(NSArray *resultados, NSError *error){
+        if (error == nil && [resultados count] > 0) {
+            CLPlacemark *r = [resultados objectAtIndex:0];
+            CLLocationCoordinate2D c = r.location.coordinate;
+            self.fieldLatitude.text = [NSString stringWithFormat:@"%f", c.latitude];
+            self.fieldLongitude.text = [NSString stringWithFormat:@"%f", c.longitude];
+        }
+        
+        [self.loading stopAnimating];   
+    }];
 }
 
 

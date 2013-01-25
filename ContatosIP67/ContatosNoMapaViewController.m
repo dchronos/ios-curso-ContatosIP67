@@ -10,6 +10,7 @@
 
 @implementation ContatosNoMapaViewController
 @synthesize mapa;
+@synthesize contatos;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +65,14 @@
         self.navigationItem.title = @"Localizacao";
     }
     return self;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.mapa addAnnotations:contatos];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.mapa removeAnnotations:contatos];
 }
 
 @end

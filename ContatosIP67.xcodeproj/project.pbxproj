@@ -19,6 +19,7 @@
 		059AB13A16A9F8490099BE4C /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059AB13916A9F8490099BE4C /* ListaContatosViewController.m */; };
 		05A57CEF16B1E4950075511A /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 05A57CEE16B1E4950075511A /* Location.gpx */; };
 		05A57CF316B1ECB60075511A /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A57CF216B1ECB60075511A /* TPKeyboardAvoidingScrollView.m */; };
+		05A57CF516B1FA2B0075511A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A57CF416B1FA2B0075511A /* CoreLocation.framework */; };
 		05ACEF2C16B0959F0019538A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05ACEF2B16B0959F0019538A /* MessageUI.framework */; };
 		05ACEF3816B0B7850019538A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF2F16B0B7850019538A /* Default.png */; };
 		05ACEF3916B0B7850019538A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF3016B0B7850019538A /* Default@2x.png */; };
@@ -55,6 +56,7 @@
 		05A57CEE16B1E4950075511A /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		05A57CF116B1ECB50075511A /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		05A57CF216B1ECB60075511A /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		05A57CF416B1FA2B0075511A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		05ACEF2B16B0959F0019538A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		05ACEF2F16B0B7850019538A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		05ACEF3016B0B7850019538A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A57CF516B1FA2B0075511A /* CoreLocation.framework in Frameworks */,
 				05ACEF4716B0BCA10019538A /* MapKit.framework in Frameworks */,
 				05ACEF2C16B0959F0019538A /* MessageUI.framework in Frameworks */,
 				0595621716A7537200607BA1 /* UIKit.framework in Frameworks */,
@@ -91,6 +94,7 @@
 		0595620716A7537200607BA1 = {
 			isa = PBXGroup;
 			children = (
+				05A57CF416B1FA2B0075511A /* CoreLocation.framework */,
 				05ACEF4616B0BCA10019538A /* MapKit.framework */,
 				05ACEF2B16B0959F0019538A /* MessageUI.framework */,
 				05ACEF2E16B0B7610019538A /* images */,

@@ -26,6 +26,12 @@
 -(CLLocationCoordinate2D) coordinate{
     return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
 }
+-(NSString *) title{
+    return self.nome;
+}
+-(NSString *) subtitle{
+    return self.email;
+}
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.nome forKey:@"nome"];

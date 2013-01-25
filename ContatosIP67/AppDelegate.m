@@ -15,25 +15,21 @@
 @synthesize window = _window;
 @synthesize contatos = _contatos;
 @synthesize nomeDoArquivo = _nomeDoArquivo;
+@synthesize contexto = _contexto;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSArray *uds =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *ud = [ uds objectAtIndex:0];
-    self.nomeDoArquivo = [NSString stringWithFormat:@"%@/Contatos", ud];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self inserirDados];
+    [self buscarContatos];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     //FormularioContatoViewController *form = [[FormularioContatoViewController alloc] init];
     ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
-    
-    self.contatos = [NSKeyedUnarchiver unarchiveObjectWithFile:self.nomeDoArquivo];
-    if(!self.contatos){
-            self.contatos = [[NSMutableArray alloc] init ];
-    }
-    
     lista.contatos = self.contatos;
+    lista.contexto = self.contexto;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
     
     ContatosNoMapaViewController *contatosMapa = [[ContatosNoMapaViewController alloc]init];
@@ -62,7 +58,7 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
-    [NSKeyedArchiver archiveRootObject:self.contatos toFile:self.nomeDoArquivo];
+    [self salvaContexto];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -86,6 +82,79 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+-(NSURL *) applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+- (NSManagedObjectModel *) managedObjectModel{
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Modelo_Contatos" withExtension:@"momd"];
+    NSManagedObjectModel 
+    *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    return managedObjectModel;
+}
+
+
+
+- (NSPersistentStoreCoordinator *) coordinator {
+    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSURL *pastaDocuments = [self applicationDocumentsDirectory];
+    NSURL *localBancoDeDados = [pastaDocuments URLByAppendingPathComponent:@"Contatos.sql"];
+    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:localBancoDeDados options:nil error:nil];
+    return coordinator;
+}
+
+-(NSManagedObjectContext *) contexto{
+    if(_contexto != nil){
+        return _contexto;
+    }
+    NSPersistentStoreCoordinator *coordinator = [self coordinator];
+    _contexto = [[NSManagedObjectContext alloc] init];
+    [_contexto setPersistentStoreCoordinator:coordinator];
+    return _contexto;
+}
+
+- (void) salvaContexto {
+    NSError *error;
+    if(![self.contexto save: &error]){
+        NSDictionary *informacoes = [error userInfo];
+        NSArray *multiplosErros = [informacoes objectForKey:NSDetailedErrorsKey];
+        if (multiplosErros) {
+            for (NSError *erro in multiplosErros) {
+                NSLog(@"Ocorreu um problema : %@", [erro userInfo]);
+            }
+        }
+        else {
+            NSLog(@"Ocorreu um problema %@", informacoes);
+        }
+    }
+}
+
+- (void) inserirDados {
+    NSUserDefaults *configuracoes = [NSUserDefaults standardUserDefaults];
+    BOOL dadosInseridos = [configuracoes boolForKey:@"dados_inseridos"];
+    if(!dadosInseridos) {
+        Contato *caelumSP = [ NSEntityDescription insertNewObjectForEntityForName:@"Contato" inManagedObjectContext:self.contexto];
+        caelumSP.nome = @"Caelum Unidade Sao Paulo";
+        caelumSP.email = @"contato@caelum.com.br";
+        caelumSP.endereco = @"Sao Paulo, SP, Rua Vergueiro, 3185";
+        caelumSP.telefone = @"01155712751";
+        caelumSP.site = @"http://www.caelum.com.br";
+        caelumSP.latitude = [NSNumber numberWithDouble:-23.5883034];
+        caelumSP.longitude = [NSNumber numberWithDouble:-46.632369];
+        
+        [self salvaContexto];
+        [configuracoes setBool:YES forKey:@"dados_inseridos"];
+        [configuracoes synchronize];
+    }
+}
+
+- (void) buscarContatos {
+    NSFetchRequest *buscaContatos = [NSFetchRequest fetchRequestWithEntityName:@"Contato"];
+    NSSortDescriptor *ordenarPorNome = [NSSortDescriptor sortDescriptorWithKey:@"nome" ascending:YES];
+    [buscaContatos setSortDescriptors:[NSArray arrayWithObject:ordenarPorNome]];
+    NSArray *contatosImutaveis = [self.contexto executeFetchRequest:buscaContatos error:nil];
+    self.contatos = [contatosImutaveis mutableCopy];
 }
 
 @end

@@ -86,14 +86,14 @@
     else{
         pino.annotation = annotation;
     }
-    Contato *contato = (Contato *) annotation;
+    //Contato *contato = (Contato *) annotation;
     pino.pinColor = MKPinAnnotationColorRed;
     pino.canShowCallout = YES;
-    if(contato.foto){
+    /*if(contato.foto){
         UIImageView *imagemContato = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
         imagemContato.image = contato.foto;
         pino.leftCalloutAccessoryView = imagemContato;
-    }
+    }*/
     return pino;
 }
 

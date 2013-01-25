@@ -15,5 +15,6 @@
 @property NSUInteger linhaDestaque;
 @property (weak) Contato *contatoSelecionado;
 
+@property (strong) NSManagedObjectContext *contexto;
 
 @end

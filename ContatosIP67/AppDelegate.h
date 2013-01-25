@@ -13,5 +13,11 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong) NSMutableArray *contatos;
 @property (strong) NSString *nomeDoArquivo;
+@property (readonly, strong) NSManagedObjectContext *contexto;
+
+
+- (void) salvaContexto;
+- (void) inserirDados;
+- (void) buscarContatos;
 
 @end

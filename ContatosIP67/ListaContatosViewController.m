@@ -15,6 +15,7 @@
 @synthesize contatos = _contatos;
 @synthesize linhaDestaque;
 @synthesize contatoSelecionado;
+@synthesize contexto = _contexto;
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -68,7 +69,9 @@
 }
 - (void) chamaFormulario{
     FormularioContatoViewController *formulario = [[FormularioContatoViewController alloc] init];
-    formulario.contatos = _contatos;
+    //formulario.contatos = _contatos;
+    formulario.delegate = self;
+    formulario.contexto = self.contexto;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:formulario];
     //[self presentModalViewController:formulario animated:YES];
     [self presentViewController:nav animated:YES completion:nil];

@@ -25,6 +25,7 @@
 @property (weak) id<FormularioContatoViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
 
+@property (strong) NSManagedObjectContext *contexto;
 
 - (IBAction)proximoElemento:(UITextField *) campoAtual;
 - (id)initWithContato: (Contato *) contato;

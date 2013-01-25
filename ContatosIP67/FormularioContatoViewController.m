@@ -22,21 +22,22 @@
 @synthesize fieldLongitude;
 @synthesize delegate = _delegate;
 @synthesize loading;
+@synthesize contexto = _contexto;
 
 - (void)pegaDadosDoFormulario
 {
     if(!_contato){
-        self.contato = [[Contato alloc] init];
+        self.contato = [NSEntityDescription insertNewObjectForEntityForName:@"Contato" inManagedObjectContext:self.contexto];
     }
     self.contato.nome = self.fieldNome.text;
     self.contato.telefone = self.fieldTelefone.text;
     self.contato.email = self.fieldEmail.text;
     self.contato.endereco = self.fieldEndereco.text;
     self.contato.site = self.fieldSite.text;
-    if(self.botaoFoto.imageView.image){
+    /*if(self.botaoFoto.imageView.image){
         self.contato.foto = self.botaoFoto.imageView.image;
         NSLog(@"image");
-    }
+    }*/
     self.contato.latitude = [NSNumber numberWithFloat:[self.fieldLatitude.text floatValue]];
     self.contato.longitude = [NSNumber numberWithFloat:[self.fieldLongitude.text floatValue]];
     /** Usando Dicionario
@@ -123,10 +124,10 @@
         self.fieldEmail.text = _contato.email;
         self.fieldEndereco.text = _contato.endereco;
         self.fieldSite.text = _contato.site;
-        if(self.botaoFoto){
+        /*if(self.botaoFoto){
             [self.botaoFoto setImage:self.contato.foto forState:UIControlStateNormal];
             NSLog(@"Tem Foto?");
-        }
+        }*/
         self.fieldLatitude.text = [_contato.latitude stringValue];
         self.fieldLongitude.text = [_contato.longitude stringValue];
     }
